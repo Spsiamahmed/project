@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SP Siam Ahmed | Premium Showcase</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg-gradient: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    }
+
+    body {
+      font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    /* Header Background */
+    .hero-bg {
+      background: var(--bg-gradient);
+      border-radius: 0 0 60px 60px;
+    }
+
+    /* Glass Effect Card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px -12px rgba(0, 123, 255, 0.2);
+    }
+
+    /* Custom Image Placeholder Colors */
+    .img-placeholder {
+      background: linear-gradient(45deg, #e2e8f0, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-placeholder i {
+      font-size: 3rem;
+      color: white;
+      opacity: 0.5;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: bold;
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-active {
+      background: white !important;
+      color: var(--primary) !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+  </style>
+</head>
+<body class="pb-24">
+
+  <div class="hero-bg pt-20 pb-40 px-6 text-center text-white">
+    <div class="max-w-4xl mx-auto">
+        <div class="w-20 h-20 bg-white rounded-3xl mx-auto mb-6 flex items-center justify-center shadow-2xl rotate-3">
+            <span class="text-3xl font-black text-blue-600">S</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tighter">SP SIAM AHMED</h1>
+        <p class="text-blue-50 font-bold tracking-widest uppercase text-xs mb-8 opacity-80">Full-Stack Developer & NLITH Agency Founder</p>
+        <div class="flex justify-center gap-3 mb-10">
+            <span class="bg-white/20 px-4 py-1 rounded-full text-xs font-semibold backdrop-blur-md border border-white/30">7+ Live Apps</span>
+            <span class="bg-white/20 px-4 py-1 rounded-full text-xs font-semibold backdrop-blur-md border border-white/30">Kishoreganj, BD</span>
+        </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto -mt-24 px-4">
+    <div class="glass-card rounded-[40px] p-4 md:p-6 shadow-2xl">
+        <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex-1 relative">
+                <i class="fa-solid fa-search absolute left-5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" placeholder="প্রজেক্ট বা টুল খুঁজুন..." 
+                       class="w-full pl-14 pr-6 py-4 bg-slate-100 rounded-3xl border-none outline-none font-semibold text-slate-700">
+            </div>
+            <div class="flex overflow-x-auto gap-2 no-scrollbar">
+                <button data-filter="all" class="filter-btn nav-active px-6 py-4 rounded-3xl font-bold whitespace-nowrap bg-slate-100 text-slate-500 transition-all">সবগুলো</button>
+                <button data-filter="tool" class="filter-btn px-6 py-4 rounded-3xl font-bold whitespace-nowrap bg-slate-100 text-slate-500 transition-all">টুলস</button>
+                <button data-filter="islamic" class="filter-btn px-6 py-4 rounded-3xl font-bold whitespace-nowrap bg-slate-100 text-slate-500 transition-all">ইসলামিক</button>
+                <button data-filter="agency" class="filter-btn px-6 py-4 rounded-3xl font-bold whitespace-nowrap bg-slate-100 text-slate-500 transition-all">এজেন্সি</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto mt-16 px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+      </div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        id: 1,
+        title: "রমজান ক্যালেন্ডার ২০২৬",
+        desc: "সেহরি ও ইফতারের সঠিক সময়সূচী এবং লাইভ কাউন্টডাউন সহ একটি আধুনিক ক্যালেন্ডার অ্যাপ।",
+        category: "islamic",
+        link: "https://spsiamahmed.github.io/ramadan-calander-spsiamahmed/",
+        icon: "fa-moon",
+        imgColor: "linear-gradient(45deg, #1e3a8a, #3b82f6)"
+      },
+      {
+        id: 2,
+        title: "Magnific.ai PDF",
+        desc: "প্রাইভেসি ফার্স্ট ইমেজ-টু-পিডিএফ কনভার্টার। ব্রাউজারে কাজ করে, কোনো ডেটা আপলোড হয় না।",
+        category: "tool",
+        link: "https://spsiamahmed.github.io/magnific",
+        icon: "fa-file-pdf",
+        imgColor: "linear-gradient(45deg, #ef4444, #f87171)"
+      },
+      {
+        id: 3,
+        title: "কটিয়াদী সরকারি স্কুল",
+        desc: "স্কুলের তথ্য, রেজাল্ট এবং একাডেমিক গ্যালারি সংবলিত একটি শিক্ষা প্রতিষ্ঠান পোর্টাল।",
+        category: "education",
+        link: "https://spsiamahmed.github.io/katiadi-government-school",
+        icon: "fa-school",
+        imgColor: "linear-gradient(45deg, #059669, #34d399)"
+      },
+      {
+        id: 4,
+        title: "NLITH Digital Agency",
+        desc: "ব্র্যান্ডিং, এসইও এবং প্রিমিয়াম ওয়েবসাইট তৈরির জন্য আমাদের অফিশিয়াল এজেন্সি সাইট।",
+        category: "agency",
+        link: "https://spsiamahmed.github.io/nlithagency/",
+        icon: "fa-chart-pie",
+        imgColor: "linear-gradient(45deg, #1e293b, #475569)"
+      },
+      {
+        id: 5,
+        title: "Arctic PDF Pro",
+        desc: "অফলাইন পিডিএফ কম্প্রেসর এবং এডিটর টুল যা অত্যন্ত দ্রুত এবং নিরাপদ।",
+        category: "tool",
+        link: "https://spsiamahmed.github.io/arctic-pdf/",
+        icon: "fa-snowflake",
+        imgColor: "linear-gradient(45deg, #0ea5e9, #7dd3fc)"
+      },
+      {
+        id: 6,
+        title: "Smart SPTODO",
+        desc: "টাস্ক ম্যানেজমেন্ট এবং ডেইলি প্রগ্রেস ট্র্যাকিং ড্যাশবোর্ড। ইউজার ফ্রেন্ডলি ইন্টারফেস।",
+        category: "tool",
+        link: "https://spsiamahmed.github.io/todo-spsiamahmed/",
+        icon: "fa-circle-check",
+        imgColor: "linear-gradient(45deg, #7c3aed, #a78bfa)"
+      }
+    ];
+
+    function renderProjects(filter = "all", search = "") {
+      const container = document.getElementById("projectsGrid");
+      container.innerHTML = "";
+
+      const filtered = projects.filter(p => {
+        const matchesFilter = filter === "all" || p.category === filter;
+        const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+
+      filtered.forEach(p => {
+        container.innerHTML += `
+          <div class="project-card glass-card rounded-[35px] overflow-hidden flex flex-col">
+            <div class="img-placeholder" style="background: ${p.imgColor}">
+              <div class="status-badge">Live Beta v2.0</div>
+              <i class="fa-solid ${p.icon}"></i>
+            </div>
+            <div class="p-8 flex-grow">
+              <span class="text-[10px] font-black uppercase tracking-widest text-blue-500 bg-blue-50 px-3 py-1 rounded-full">${p.category}</span>
+              <h3 class="text-xl font-bold mt-4 mb-2 text-slate-800">${p.title}</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">${p.desc}</p>
+            </div>
+            <div class="px-8 pb-8">
+              <a href="${p.link}" target="_blank" class="block w-full text-center py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
+                Open Project <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Initial Render
+    renderProjects();
+
+    // Event Listeners
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("nav-active"));
+        btn.classList.add("nav-active");
+        renderProjects(btn.dataset.filter, document.getElementById("searchInput").value);
+      });
+    });
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      const activeFilter = document.querySelector(".filter-btn.nav-active").dataset.filter;
+      renderProjects(activeFilter, e.target.value);
+    });
+  </script>
+</body>
+</html>
